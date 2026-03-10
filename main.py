@@ -1,4 +1,8 @@
+import logging
 from fastapi import FastAPI, Request
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
@@ -6,5 +10,5 @@ app = FastAPI()
 @app.post("/query")
 async def handle_query(request: Request):
     body = await request.json()
-    print("Received query:", body)
+    logger.info(f"Received query: {body}")
     return {"status": "ok", "received": body}
