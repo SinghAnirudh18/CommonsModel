@@ -12,3 +12,8 @@ async def handle_query(request: Request):
     body = await request.json()
     logger.info(f"Received query: {body}")
     return {"status": "ok", "received": body}
+
+
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
